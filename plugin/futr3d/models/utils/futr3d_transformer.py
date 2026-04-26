@@ -115,8 +115,10 @@ class FUTR3DTransformerDecoder(TransformerLayerSequence):
                 if self.no_sine_embed:
                     raw_query_pos = self.ref_point_head(reference_points_input)
                 else:
-                    query_sine_embed = gen_sineembed_for_position(reference_points_input) # bs, nq, 256*2 
-                    raw_query_pos = self.ref_point_head(query_sine_embed) # bs, nq, 256
+                    query_sine_embed = gen_sineembed_for_position(
+                        reference_points_input,
+                        num_feats=self.embed_dims // 2)  # bs, nq, embed_dims * anchor_size / 2
+                    raw_query_pos = self.ref_point_head(query_sine_embed)  # bs, nq, embed_dims
                 pos_scale = self.query_scale(output) if lid != 0 else 1
                 raw_query_pos = raw_query_pos.permute(1, 0, 2)
                 query_pos = pos_scale * raw_query_pos
@@ -548,12 +550,12 @@ class MLP(nn.Module):
             x = F.relu(layer(x)) if i < self.num_layers - 1 else layer(x)
         return x
 
-def gen_sineembed_for_position(pos_tensor):
+def gen_sineembed_for_position(pos_tensor, num_feats=128):
     # n_query, bs, _ = pos_tensor.size()
     # sineembed_tensor = torch.zeros(n_query, bs, 256)
     scale = 2 * math.pi
-    dim_t = torch.arange(128, dtype=torch.float32, device=pos_tensor.device)
-    dim_t = 10000 ** (2 * (dim_t // 2) / 128)
+    dim_t = torch.arange(num_feats, dtype=torch.float32, device=pos_tensor.device)
+    dim_t = 10000 ** (2 * (dim_t // 2) / num_feats)
     x_embed = pos_tensor[:, :, 0] * scale
     y_embed = pos_tensor[:, :, 1] * scale
     pos_x = x_embed[:, :, None] / dim_t
