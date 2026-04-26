@@ -12,6 +12,7 @@ import plugin.futr3d  # noqa: F401 - registers custom FUTR3D modules
 
 
 CFG_LIST = [
+    "plugin/futr3d/configs/lidar_only/lidar_0075v_300q.py",
     "plugin/futr3d/configs/lidar_only/lidar_0075v_900q.py",
     "plugin/futr3d/configs/lidar_only/lidar_0075v_900q_4b.py",
     "plugin/futr3d/configs/lidar_only/lidar_0075v_900q_1b.py",
