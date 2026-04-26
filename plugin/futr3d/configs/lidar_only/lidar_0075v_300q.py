@@ -329,7 +329,7 @@ evaluation = dict(interval=2)
 
 find_unused_parameters=True
 
-total_epochs = 12
+total_epochs = 10
 runner = dict(type='EpochBasedRunner', max_epochs=total_epochs)
 
 custom_hooks = [dict(type='FadeOjectSampleHook', num_last_epochs=3)]
