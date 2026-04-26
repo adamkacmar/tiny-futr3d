@@ -329,7 +329,10 @@ evaluation = dict(interval=2)
 
 find_unused_parameters=True
 
-custom_hooks = [dict(type='FadeOjectSampleHook', num_last_epochs=5)]
+total_epochs = 12
+runner = dict(type='EpochBasedRunner', max_epochs=total_epochs)
+
+custom_hooks = [dict(type='FadeOjectSampleHook', num_last_epochs=3)]
 
 checkpoint_config = dict(interval=1, max_keep_ckpts=1)
 
