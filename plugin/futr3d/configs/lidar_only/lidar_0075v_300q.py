@@ -116,6 +116,13 @@ model = dict(
                             type='FUTR3DAttention',
                             embed_dims=128)
                     ],
+                    ffn_cfgs=dict(
+                        type='FFN',
+                        embed_dims=128,
+                        feedforward_channels=512,
+                        num_fcs=2,
+                        ffn_drop=0.1,
+                        act_cfg=dict(type='ReLU', inplace=True)),
                     feedforward_channels=512,
                     ffn_dropout=0.1,
                     operation_order=('self_attn', 'norm', 'cross_attn', 'norm',
