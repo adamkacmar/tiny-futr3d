@@ -1,7 +1,9 @@
+from doctest import Example
 import os
 import sys
 import traceback
 
+import torch
 from mmcv import Config
 
 
@@ -54,6 +56,21 @@ def count_params(model):
     return total, trainable
 
 
+def count_params_from_checkpoint(checkpoint_path):
+    """Count parameters from a saved checkpoint (.pth or .ckpt file)."""
+    ckpt = torch.load(checkpoint_path, map_location='cpu')
+    
+    # Extract state_dict (handles both .pth and .ckpt formats)
+    if isinstance(ckpt, dict) and 'state_dict' in ckpt:
+        state_dict = ckpt['state_dict']
+    else:
+        state_dict = ckpt
+    
+    # Count parameters from tensors in state_dict
+    total = sum(p.numel() for p in state_dict.values() if isinstance(p, torch.Tensor))
+    return total
+
+
 for cfg_path in CFG_LIST:
     print("=" * 120)
     print("Config:", cfg_path)
@@ -66,3 +83,18 @@ for cfg_path in CFG_LIST:
     except Exception as exc:
         print("FAILED:", str(exc))
         traceback.print_exc()
+
+
+CHECKPOINT_LIST = [
+     "work_dirs/pointpillar/pointpillar_7728.pth",
+]
+ 
+for ckpt_path in CHECKPOINT_LIST:
+     print("=" * 120)
+     print("Checkpoint:", ckpt_path)
+     try:
+         total = count_params_from_checkpoint(ckpt_path)
+         print("Total params :", f"{total:,}")
+     except Exception as exc:
+         print("FAILED:", str(exc))
+         traceback.print_exc()
