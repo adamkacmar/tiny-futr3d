@@ -140,8 +140,8 @@ model = dict(
                     attn_cfgs=[
                         dict(
                             type='MultiheadAttention',
-                            embed_dims=128,
-                            num_heads=4,
+                            embed_dims=256,
+                            num_heads=8,
                             dropout=0.1),
                         dict(
                             type='FUTR3DAttention',
@@ -149,15 +149,15 @@ model = dict(
                             use_camera=True,
                             use_radar=False,
                             pc_range=point_cloud_range,
-                            embed_dims=128)
+                            embed_dims=256)
                     ],
-                    feedforward_channels=512,
+                    feedforward_channels=1024,
                     ffn_dropout=0.1,
                     operation_order=('self_attn', 'norm', 'cross_attn', 'norm',
                                      'ffn', 'norm')))),
         positional_encoding=dict(
             type='SinePositionalEncoding',
-            num_feats=64,
+            num_feats=128,
             normalize=True,
             offset=-0.5),
         loss_cls=dict(
