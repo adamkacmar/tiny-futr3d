@@ -1,0 +1,4 @@
+__pycache__/
+data/nuscenes/
+mmdet3d.egg-info/
+mmdet3d/.mim/
