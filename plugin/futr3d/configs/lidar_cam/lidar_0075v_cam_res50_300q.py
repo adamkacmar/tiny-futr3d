@@ -23,7 +23,7 @@ img_norm_cfg = dict(
 
 center_head = dict(
     type='CenterHead',
-    in_channels=sum([128, 128]),
+    in_channels=sum([256, 256]),
     tasks=[
         dict(num_class=1, class_names=['car']),
         dict(num_class=2, class_names=['truck', 'construction_vehicle']),
@@ -71,7 +71,7 @@ model = dict(
     img_neck=dict(
         type='FPN',
         in_channels=[256, 512, 1024, 2048],
-        out_channels=128,
+        out_channels=256,
         start_level=1,
         add_extra_convs='on_output',
         num_outs=4,
@@ -105,7 +105,7 @@ model = dict(
         norm_cfg=dict(type='BN2d', eps=1e-3, momentum=0.01),
         act_cfg=dict(type='ReLU', inplace=False),
         in_channels=[64, 128],
-        out_channels=128,
+        out_channels=256,
         start_level=0,
         add_extra_convs=True,
         num_outs=4,
@@ -120,7 +120,7 @@ model = dict(
         mix_selection=False,
         num_query=300,
         num_classes=10,
-        in_channels=128,
+        in_channels=256,
         pc_range=point_cloud_range,
         sync_cls_avg_factor=True,
         with_box_refine=True,
@@ -140,8 +140,8 @@ model = dict(
                     attn_cfgs=[
                         dict(
                             type='MultiheadAttention',
-                            embed_dims=128,
-                            num_heads=4,
+                            embed_dims=256,
+                            num_heads=8,
                             dropout=0.1),
                         dict(
                             type='FUTR3DAttention',
@@ -149,22 +149,22 @@ model = dict(
                             use_camera=True,
                             use_radar=False,
                             pc_range=point_cloud_range,
-                            embed_dims=128)
+                            embed_dims=256)
                     ],
                     ffn_cfgs=dict(
                         type='FFN',
-                        embed_dims=128,
-                        feedforward_channels=512,
+                        embed_dims=256,
+                        feedforward_channels=1024,
                         num_fcs=2,
                         ffn_drop=0.1,
                         act_cfg=dict(type='ReLU', inplace=True)),
-                    feedforward_channels=512,
+                    feedforward_channels=1024,
                     ffn_dropout=0.1,
                     operation_order=('self_attn', 'norm', 'cross_attn', 'norm',
                                      'ffn', 'norm')))),
         positional_encoding=dict(
             type='SinePositionalEncoding',
-            num_feats=64,
+            num_feats=128,
             normalize=True,
             offset=-0.5),
         loss_cls=dict(
