@@ -40,6 +40,10 @@ def parse_args():
         description='MMDet test (and eval) a model')
     parser.add_argument('config', help='test config file path')
     parser.add_argument(
+        '--checkpoint',
+        default=None,
+        help='checkpoint file path to load before measuring latency')
+    parser.add_argument(
         '--fuse-conv-bn',
         action='store_true',
         help='Whether to fuse conv and bn, this will slightly increase'
@@ -142,6 +146,8 @@ def main():
     # build the model and load checkpoint
     cfg.model.train_cfg = None
     model = build_model(cfg.model, test_cfg=cfg.get('test_cfg'))
+    if args.checkpoint is not None:
+        load_checkpoint(model, args.checkpoint, map_location='cpu')
     fp16_cfg = cfg.get('fp16', None)
     if fp16_cfg is not None:
         wrap_fp16_model(model)
@@ -157,22 +163,38 @@ def main():
         model.cuda()
         model.eval()
 
+        use_camera = getattr(model, 'use_camera', False)
+        use_radar = getattr(model, 'use_radar', False)
+        use_lidar = getattr(model, 'use_lidar', False)
+
+        img_size = [928, 1600]
+        images = None
+        if use_camera:
+            images = torch.randn(1, 6, 3, img_size[0], img_size[1]).cuda()
+
+        radar = None
+        if use_radar:
+            radar = [torch.randn(800, 6).cuda()]
+
+        points = None
+        if use_lidar:
+            # The lidar-only configs load 5 point features per sample.
+            points = [torch.randn(80000, 5).cuda()]
+
         latencies = []
         for k in range(num_repeats + num_warmup):
-            img_size = [928, 1600]
-            images = torch.randn(1, 6, 3, img_size[0], img_size[1]).cuda()
-            radar = [torch.randn(800, 6).cuda()]
             img_meta = dict()
             img_meta['ori_shape'] = (900, 1600, 3, 6)
             img_meta['img_shape'] = []
             
             img_meta['lidar2img'] = []
-            for i in range(6):
-                img_meta['lidar2img'].append(np.random.rand(4, 4))
-                img_meta['img_shape'].append((928, 1600, 3))
+            if use_camera:
+                for i in range(6):
+                    img_meta['lidar2img'].append(np.random.rand(4, 4))
+                    img_meta['img_shape'].append((928, 1600, 3))
             img_metas = [img_meta]
             start = cuda_time()
-            model.dummy_forward(img_metas, img=images, radar=radar)
+            model.dummy_forward(img_metas, img=images, radar=radar, points=points)
             if k >= num_warmup:
                 latencies.append((cuda_time() - start) * 1000)
 

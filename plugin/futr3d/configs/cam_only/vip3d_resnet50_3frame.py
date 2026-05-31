@@ -26,7 +26,7 @@ input_modality = dict(
     use_external=False)
 
 model = dict(
-    type='ViP3D',
+    type='FUTR3D',
     use_grid_mask=True,
     num_classes=7,
     num_query=300,
