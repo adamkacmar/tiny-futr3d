@@ -161,33 +161,39 @@ model = dict(
     ),
 )
 
-dataset_type = 'NuScenesTrackDatasetRadar'
+dataset_type = 'NuScenesDataset'
 data_root = 'data/nuscenes/'
 
 file_client_args = dict(backend='disk')
 
 train_pipeline = [
-    dict(type='LoadMultiViewImageFromFiles'),
+    dict(type='LoadMultiViewImageFromFiles', to_float32=True),
+    dict(type='PhotoMetricDistortionMultiViewImage'),
     dict(type='LoadAnnotations3D', with_bbox_3d=True, with_label_3d=True),
-    dict(type='InstanceRangeFilter', point_cloud_range=point_cloud_range),
+    dict(type='ObjectRangeFilter', point_cloud_range=point_cloud_range),
+    dict(type='ObjectNameFilter', classes=class_names),
     dict(type='NormalizeMultiviewImage', **img_norm_cfg),
-    dict(type='PadMultiViewImage', size_divisor=32)
-]
-
-train_pipeline_post = [
-    dict(type='FormatBundle3DTrack'),
-    dict(type='Collect3D', keys=['gt_bboxes_3d', 'gt_labels_3d', 'instance_inds', 'img', 'timestamp', 'l2g_r_mat', 'l2g_t', 'pred_matrix', 'polyline_spans', 'mapping', 'instance_idx_2_labels'])
+    dict(type='PadMultiViewImage', size_divisor=32),
+    dict(type='DefaultFormatBundle3D', class_names=class_names),
+    dict(type='Collect3D', keys=['gt_bboxes_3d', 'gt_labels_3d', 'img'])
 ]
 
 test_pipeline = [
-    dict(type='LoadMultiViewImageFromFiles'),
+    dict(type='LoadMultiViewImageFromFiles', to_float32=True),
     dict(type='NormalizeMultiviewImage', **img_norm_cfg),
     dict(type='PadMultiViewImage', size_divisor=32),
-]
-
-test_pipeline_post = [
-    dict(type='FormatBundle3DTrack'),
-    dict(type='Collect3D', keys=['img', 'timestamp', 'l2g_r_mat', 'l2g_t', 'pred_matrix', 'polyline_spans', 'mapping', 'instance_idx_2_labels'])
+    dict(
+        type='MultiScaleFlipAug3D',
+        img_scale=(1333, 800),
+        pts_scale_ratio=1,
+        flip=False,
+        transforms=[
+            dict(
+                type='DefaultFormatBundle3D',
+                class_names=class_names,
+                with_label=False),
+            dict(type='Collect3D', keys=['img'])
+        ])
 ]
 
 data = dict(
@@ -195,35 +201,22 @@ data = dict(
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
-        num_frames_per_sample=3,
         data_root=data_root,
-        ann_file=data_root + 'nuscenes_tracking_infos_train.pkl',
-        pipeline_single=train_pipeline,
-        pipeline_post=train_pipeline_post,
+        ann_file=data_root + 'nuscenes_infos_train.pkl',
+        pipeline=train_pipeline,
         classes=class_names,
         modality=input_modality,
         test_mode=False,
         use_valid_flag=True,
-        box_type_3d='LiDAR',
-        do_pred=True),
+        box_type_3d='LiDAR'),
     val=dict(
-        type=dataset_type,
-        pipeline_single=test_pipeline,
-        pipeline_post=test_pipeline_post,
+        pipeline=test_pipeline,
         classes=class_names,
-        modality=input_modality,
-        ann_file=data_root + 'nuscenes_tracking_infos_val.pkl',
-        num_frames_per_sample=1,
-        do_pred=True),
+        modality=input_modality),
     test=dict(
-        type=dataset_type,
-        pipeline_single=test_pipeline,
-        pipeline_post=test_pipeline_post,
+        pipeline=test_pipeline,
         classes=class_names,
-        modality=input_modality,
-        ann_file=data_root + 'nuscenes_tracking_infos_val.pkl',
-        num_frames_per_sample=1,
-        do_pred=True))
+        modality=input_modality))
 
 optimizer = dict(
     type='AdamW',
