@@ -276,6 +276,9 @@ test_pipeline = [
         file_client_args=file_client_args,
         pad_empty_sweeps=True,
         remove_close=True),
+    dict(
+        type='RobustnessLiDARFOV',
+        angle_range=(-60, 60)),
     dict(type='NormalizeMultiviewImage', **img_norm_cfg),
     dict(type='PadMultiViewImage', size_divisor=32),
     dict(
@@ -315,6 +318,9 @@ eval_pipeline = [
         file_client_args=file_client_args,
         pad_empty_sweeps=True,
         remove_close=True),
+    dict(
+        type='RobustnessLiDARFOV',
+        angle_range=(-60, 60)),
     dict(
         type='DefaultFormatBundle3D',
         class_names=class_names,
