@@ -1,0 +1,758 @@
+{
+  "schema_version": 1,
+  "checkpoint": "work_dirs/lidar_0075_cam_vov_900q/lidar_0075_cam_vov_900q.pth",
+  "noise_metadata": "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl",
+  "mask_dir": "/home/kacmara/MoME/data/nuscenes-r/Mud_Mask_selected",
+  "scenarios": [
+    {
+      "name": "clean",
+      "corruption": "clean",
+      "parameters": {},
+      "suite": "paper",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_clean.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/clean"
+    },
+    {
+      "name": "fov60",
+      "corruption": "fov",
+      "parameters": {
+        "angle_range": [
+          -60,
+          60
+        ]
+      },
+      "suite": "paper",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_fov60.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/fov60"
+    },
+    {
+      "name": "beam4",
+      "corruption": "beam_reduction",
+      "parameters": {
+        "beams": 4
+      },
+      "suite": "paper",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_beam4.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/beam4"
+    },
+    {
+      "name": "lidar_drop_all",
+      "corruption": "lidar_drop",
+      "parameters": {
+        "representation": "zero_tensor"
+      },
+      "suite": "paper",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_drop_all.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_drop_all"
+    },
+    {
+      "name": "object_failure_05",
+      "corruption": "object_failure",
+      "parameters": {
+        "schedule": "provided_frame_flags",
+        "generation_probability": 0.5
+      },
+      "suite": "paper",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_object_failure_05.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/object_failure_05"
+    },
+    {
+      "name": "camera_drop_all",
+      "corruption": "camera_drop",
+      "parameters": {
+        "cameras": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ]
+      },
+      "suite": "paper",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_drop_all.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_drop_all"
+    },
+    {
+      "name": "camera_occlusion",
+      "corruption": "occlusion",
+      "parameters": {
+        "mask_assignment": "provided",
+        "blend": "alpha=(mask/255)^3"
+      },
+      "suite": "paper",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_occlusion.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl",
+        "/home/kacmara/MoME/data/nuscenes-r/Mud_Mask_selected"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_occlusion"
+    },
+    {
+      "name": "fov90",
+      "corruption": "fov",
+      "parameters": {
+        "angle_range": [
+          -90,
+          90
+        ]
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_fov90.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/fov90"
+    },
+    {
+      "name": "lidar_stuck_10_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 10,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_10_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_10_discrete"
+    },
+    {
+      "name": "lidar_stuck_10_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 10,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_10_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_10_consecutive"
+    },
+    {
+      "name": "lidar_stuck_20_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 20,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_20_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_20_discrete"
+    },
+    {
+      "name": "lidar_stuck_20_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 20,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_20_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_20_consecutive"
+    },
+    {
+      "name": "lidar_stuck_30_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 30,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_30_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_30_discrete"
+    },
+    {
+      "name": "lidar_stuck_30_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 30,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_30_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_30_consecutive"
+    },
+    {
+      "name": "lidar_stuck_40_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 40,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_40_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_40_discrete"
+    },
+    {
+      "name": "lidar_stuck_40_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 40,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_40_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_40_consecutive"
+    },
+    {
+      "name": "lidar_stuck_50_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 50,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_50_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_50_discrete"
+    },
+    {
+      "name": "lidar_stuck_50_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 50,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_50_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_50_consecutive"
+    },
+    {
+      "name": "lidar_stuck_60_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 60,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_60_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_60_discrete"
+    },
+    {
+      "name": "lidar_stuck_60_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 60,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_60_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_60_consecutive"
+    },
+    {
+      "name": "lidar_stuck_70_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 70,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_70_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_70_discrete"
+    },
+    {
+      "name": "lidar_stuck_70_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 70,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_70_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_70_consecutive"
+    },
+    {
+      "name": "lidar_stuck_80_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 80,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_80_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_80_discrete"
+    },
+    {
+      "name": "lidar_stuck_80_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 80,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_80_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_80_consecutive"
+    },
+    {
+      "name": "lidar_stuck_90_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 90,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_90_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_90_discrete"
+    },
+    {
+      "name": "lidar_stuck_90_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "lidar",
+        "ratio": 90,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_lidar_stuck_90_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/lidar_stuck_90_consecutive"
+    },
+    {
+      "name": "camera_stuck_10_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 10,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_10_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_10_discrete"
+    },
+    {
+      "name": "camera_stuck_10_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 10,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_10_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_10_consecutive"
+    },
+    {
+      "name": "camera_stuck_20_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 20,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_20_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_20_discrete"
+    },
+    {
+      "name": "camera_stuck_20_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 20,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_20_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_20_consecutive"
+    },
+    {
+      "name": "camera_stuck_30_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 30,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_30_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_30_discrete"
+    },
+    {
+      "name": "camera_stuck_30_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 30,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_30_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_30_consecutive"
+    },
+    {
+      "name": "camera_stuck_40_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 40,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_40_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_40_discrete"
+    },
+    {
+      "name": "camera_stuck_40_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 40,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_40_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_40_consecutive"
+    },
+    {
+      "name": "camera_stuck_50_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 50,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_50_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_50_discrete"
+    },
+    {
+      "name": "camera_stuck_50_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 50,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_50_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_50_consecutive"
+    },
+    {
+      "name": "camera_stuck_60_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 60,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_60_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_60_discrete"
+    },
+    {
+      "name": "camera_stuck_60_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 60,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_60_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_60_consecutive"
+    },
+    {
+      "name": "camera_stuck_70_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 70,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_70_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_70_discrete"
+    },
+    {
+      "name": "camera_stuck_70_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 70,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_70_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_70_consecutive"
+    },
+    {
+      "name": "camera_stuck_80_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 80,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_80_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_80_discrete"
+    },
+    {
+      "name": "camera_stuck_80_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 80,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_80_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_80_consecutive"
+    },
+    {
+      "name": "camera_stuck_90_discrete",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 90,
+        "mode": "discrete"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_90_discrete.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_90_discrete"
+    },
+    {
+      "name": "camera_stuck_90_consecutive",
+      "corruption": "frame_stuck",
+      "parameters": {
+        "sensor": "camera",
+        "ratio": 90,
+        "mode": "consecutive"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_stuck_90_consecutive.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_stuck_90_consecutive"
+    },
+    {
+      "name": "calibration_single",
+      "corruption": "calibration",
+      "parameters": {
+        "mode": "single"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_calibration_single.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/calibration_single"
+    },
+    {
+      "name": "calibration_all",
+      "corruption": "calibration",
+      "parameters": {
+        "mode": "all"
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_calibration_all.py",
+      "metadata_dependencies": [
+        "/home/kacmara/MoME/data/nuscenes-r/nuscenes_infos_val_with_noise.pkl"
+      ],
+      "output_directory": "work_dirs/robustness/<unique-run>/calibration_all"
+    },
+    {
+      "name": "camera_drop_cam_front",
+      "corruption": "camera_drop",
+      "parameters": {
+        "cameras": [
+          "CAM_FRONT"
+        ]
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_drop_cam_front.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_drop_cam_front"
+    },
+    {
+      "name": "camera_drop_cam_front_right",
+      "corruption": "camera_drop",
+      "parameters": {
+        "cameras": [
+          "CAM_FRONT_RIGHT"
+        ]
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_drop_cam_front_right.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_drop_cam_front_right"
+    },
+    {
+      "name": "camera_drop_cam_front_left",
+      "corruption": "camera_drop",
+      "parameters": {
+        "cameras": [
+          "CAM_FRONT_LEFT"
+        ]
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_drop_cam_front_left.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_drop_cam_front_left"
+    },
+    {
+      "name": "camera_drop_cam_back",
+      "corruption": "camera_drop",
+      "parameters": {
+        "cameras": [
+          "CAM_BACK"
+        ]
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_drop_cam_back.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_drop_cam_back"
+    },
+    {
+      "name": "camera_drop_cam_back_left",
+      "corruption": "camera_drop",
+      "parameters": {
+        "cameras": [
+          "CAM_BACK_LEFT"
+        ]
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_drop_cam_back_left.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_drop_cam_back_left"
+    },
+    {
+      "name": "camera_drop_cam_back_right",
+      "corruption": "camera_drop",
+      "parameters": {
+        "cameras": [
+          "CAM_BACK_RIGHT"
+        ]
+      },
+      "suite": "toolkit",
+      "config": "plugin/futr3d/configs/lidar_cam/lidar_0075v_cam_vov_eval_camera_drop_cam_back_right.py",
+      "metadata_dependencies": [],
+      "output_directory": "work_dirs/robustness/<unique-run>/camera_drop_cam_back_right"
+    }
+  ]
+}

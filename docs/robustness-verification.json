@@ -1,0 +1,1334 @@
+{
+  "environment": "futr3d",
+  "interpreter": "/home/kacmara/.conda/envs/futr3d/bin/python",
+  "full_validation_run": false,
+  "preserved_config_sha256": {
+    "clean": "8ab2f9abc2734f352d6b1f423c0e38c114c10cfdffeff5511257bc28f44d1998",
+    "fov60": "d6c402124c6c30eb76929a27a50e914534eb527f86d33d54c4a9188e7453b978"
+  },
+  "runner_tests": {
+    "passed": 3,
+    "evaluation_backend": "fake; no model evaluation"
+  },
+  "edge_tests": {
+    "passed": 4
+  },
+  "paper_cpu": {
+    "cpu_only": true,
+    "scenarios": [
+      {
+        "name": "clean",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "fov60",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 47896,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864,
+        "after_corruption": 50449
+      },
+      {
+        "name": "beam4",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 36344,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 36851
+      },
+      {
+        "name": "lidar_drop_all",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 262864,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864,
+        "after_corruption": 262864
+      },
+      {
+        "name": "object_failure_05",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 251905,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864,
+        "before_object_failure": 262864,
+        "after_corruption": 262161
+      },
+      {
+        "name": "camera_drop_all",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_occlusion",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      }
+    ],
+    "reference_sha256": {
+      "/home/kacmara/lidar-camera-robust-benchmark/Toolkit_nuscenes_English.md": "1ec69dd91b728269a4c1ef4c2c64df141b894fa5aa42a99c9d69416be338b0fc",
+      "/home/kacmara/MoME/projects/mmdet3d_plugin/datasets/pipelines/transform_3d.py": "31aadcaad90c04eb71084351ff5c7d83548e774d6879b2621ac172d73d56d680",
+      "/home/kacmara/tiny-futr3d/tests/robustness/references/bevfusion_loading_utils.py": "4cdd4a73ecd1d5d2b1466352d32d2954b8e8a466abcebe98b9d3871a06663c49"
+    }
+  },
+  "toolkit_cpu": {
+    "cpu_only": true,
+    "scenarios": [
+      {
+        "name": "fov90",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 83448,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864,
+        "after_corruption": 87920
+      },
+      {
+        "name": "lidar_stuck_10_discrete",
+        "status": "passed",
+        "sample_index": 6,
+        "token": "b06a815164ec466f9fdb525522bb3799",
+        "points": 253952,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 265790
+      },
+      {
+        "name": "lidar_stuck_10_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252768,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262798
+      },
+      {
+        "name": "lidar_stuck_20_discrete",
+        "status": "passed",
+        "sample_index": 4,
+        "token": "01a7d01c014f406f87b8fe11976c3d0a",
+        "points": 254335,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 265051
+      },
+      {
+        "name": "lidar_stuck_20_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252768,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262798
+      },
+      {
+        "name": "lidar_stuck_30_discrete",
+        "status": "passed",
+        "sample_index": 3,
+        "token": "2140329a6990437aa46b83c30f49cf49",
+        "points": 254084,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 265120
+      },
+      {
+        "name": "lidar_stuck_30_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252768,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262798
+      },
+      {
+        "name": "lidar_stuck_40_discrete",
+        "status": "passed",
+        "sample_index": 3,
+        "token": "2140329a6990437aa46b83c30f49cf49",
+        "points": 254084,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 265120
+      },
+      {
+        "name": "lidar_stuck_40_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252768,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262798
+      },
+      {
+        "name": "lidar_stuck_50_discrete",
+        "status": "passed",
+        "sample_index": 3,
+        "token": "2140329a6990437aa46b83c30f49cf49",
+        "points": 254084,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 265120
+      },
+      {
+        "name": "lidar_stuck_50_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252768,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262798
+      },
+      {
+        "name": "lidar_stuck_60_discrete",
+        "status": "passed",
+        "sample_index": 3,
+        "token": "2140329a6990437aa46b83c30f49cf49",
+        "points": 254084,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 265120
+      },
+      {
+        "name": "lidar_stuck_60_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252768,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262798
+      },
+      {
+        "name": "lidar_stuck_70_discrete",
+        "status": "passed",
+        "sample_index": 3,
+        "token": "2140329a6990437aa46b83c30f49cf49",
+        "points": 254084,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 265120
+      },
+      {
+        "name": "lidar_stuck_70_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252768,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262798
+      },
+      {
+        "name": "lidar_stuck_80_discrete",
+        "status": "passed",
+        "sample_index": 2,
+        "token": "08e76760a8c64a92a86686baf68f6aff",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "lidar_stuck_80_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252768,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262798
+      },
+      {
+        "name": "lidar_stuck_90_discrete",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252768,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262798
+      },
+      {
+        "name": "lidar_stuck_90_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252768,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262798
+      },
+      {
+        "name": "camera_stuck_10_discrete",
+        "status": "passed",
+        "sample_index": 2,
+        "token": "08e76760a8c64a92a86686baf68f6aff",
+        "points": 254084,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 265120
+      },
+      {
+        "name": "camera_stuck_10_consecutive",
+        "status": "passed",
+        "sample_index": 6,
+        "token": "b06a815164ec466f9fdb525522bb3799",
+        "points": 255217,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 267267
+      },
+      {
+        "name": "camera_stuck_20_discrete",
+        "status": "passed",
+        "sample_index": 2,
+        "token": "08e76760a8c64a92a86686baf68f6aff",
+        "points": 254084,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 265120
+      },
+      {
+        "name": "camera_stuck_20_consecutive",
+        "status": "passed",
+        "sample_index": 6,
+        "token": "b06a815164ec466f9fdb525522bb3799",
+        "points": 255217,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 267267
+      },
+      {
+        "name": "camera_stuck_30_discrete",
+        "status": "passed",
+        "sample_index": 2,
+        "token": "08e76760a8c64a92a86686baf68f6aff",
+        "points": 254084,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 265120
+      },
+      {
+        "name": "camera_stuck_30_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_40_discrete",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_40_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_50_discrete",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_50_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_60_discrete",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_60_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_70_discrete",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_70_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_80_discrete",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_80_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_90_discrete",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_stuck_90_consecutive",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "calibration_single",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864,
+        "lidar2img_max_abs_deltas": [
+          20.193959748279838,
+          55.65087271087293,
+          36.926686482919564,
+          20.313543274192803,
+          39.83372941250366,
+          106.75527287698011
+        ]
+      },
+      {
+        "name": "calibration_all",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864,
+        "lidar2img_max_abs_deltas": [
+          55.12074045558387,
+          32.743421233600486,
+          30.08043458987595,
+          43.03345564832114,
+          25.299924863445654,
+          25.35589307725553
+        ]
+      },
+      {
+        "name": "camera_drop_cam_front",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_drop_cam_front_right",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_drop_cam_front_left",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_drop_cam_back",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_drop_cam_back_left",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      },
+      {
+        "name": "camera_drop_cam_back_right",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864
+      }
+    ],
+    "reference_sha256": {
+      "/home/kacmara/lidar-camera-robust-benchmark/Toolkit_nuscenes_English.md": "1ec69dd91b728269a4c1ef4c2c64df141b894fa5aa42a99c9d69416be338b0fc",
+      "/home/kacmara/MoME/projects/mmdet3d_plugin/datasets/pipelines/transform_3d.py": "31aadcaad90c04eb71084351ff5c7d83548e774d6879b2621ac172d73d56d680",
+      "/home/kacmara/tiny-futr3d/tests/robustness/references/bevfusion_loading_utils.py": "4cdd4a73ecd1d5d2b1466352d32d2954b8e8a466abcebe98b9d3871a06663c49"
+    }
+  },
+  "paper_single_sample_inference": {
+    "cpu_only": false,
+    "scenarios": [
+      {
+        "name": "beam4",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 36344,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 36851,
+        "inference_boxes": 300,
+        "inference_status": "passed"
+      },
+      {
+        "name": "lidar_drop_all",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 262864,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864,
+        "after_corruption": 262864,
+        "inference_boxes": 300,
+        "inference_status": "passed"
+      },
+      {
+        "name": "object_failure_05",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 251905,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864,
+        "before_object_failure": 262864,
+        "after_corruption": 262161,
+        "inference_boxes": 300,
+        "inference_status": "passed"
+      },
+      {
+        "name": "camera_drop_all",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864,
+        "inference_boxes": 300,
+        "inference_status": "passed"
+      },
+      {
+        "name": "camera_occlusion",
+        "status": "passed",
+        "sample_index": 1,
+        "token": "cc18fde20db74d30825b0b60ec511b7b",
+        "points": 252608,
+        "image_shape": [
+          6,
+          3,
+          928,
+          1600
+        ],
+        "camera_order": [
+          "CAM_FRONT",
+          "CAM_FRONT_RIGHT",
+          "CAM_FRONT_LEFT",
+          "CAM_BACK",
+          "CAM_BACK_LEFT",
+          "CAM_BACK_RIGHT"
+        ],
+        "fused": 262864,
+        "inference_boxes": 300,
+        "inference_status": "passed"
+      }
+    ],
+    "reference_sha256": {
+      "/home/kacmara/lidar-camera-robust-benchmark/Toolkit_nuscenes_English.md": "1ec69dd91b728269a4c1ef4c2c64df141b894fa5aa42a99c9d69416be338b0fc",
+      "/home/kacmara/MoME/projects/mmdet3d_plugin/datasets/pipelines/transform_3d.py": "31aadcaad90c04eb71084351ff5c7d83548e774d6879b2621ac172d73d56d680",
+      "/home/kacmara/tiny-futr3d/tests/robustness/references/bevfusion_loading_utils.py": "4cdd4a73ecd1d5d2b1466352d32d2954b8e8a466abcebe98b9d3871a06663c49"
+    }
+  }
+}
