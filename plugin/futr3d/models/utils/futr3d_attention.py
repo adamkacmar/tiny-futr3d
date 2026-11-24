@@ -9,10 +9,13 @@ from mmcv.cnn.bricks.registry import (ATTENTION,
 from mmcv.cnn.bricks.transformer import (MultiScaleDeformableAttention,
                                          TransformerLayerSequence,
                                          build_transformer_layer_sequence)
-from mmcv.ops.multi_scale_deform_attn import MultiScaleDeformableAttnFunction
+from mmcv.ops.multi_scale_deform_attn import (
+    MultiScaleDeformableAttnFunction, multi_scale_deformable_attn_pytorch)
 from mmcv.runner.base_module import BaseModule
 from mmcv.utils import IS_CUDA_AVAILABLE, IS_MLU_AVAILABLE
 from mmdet.models.utils.builder import TRANSFORMER
+
+from .query_router import QueryRouter
 
 
 def inverse_sigmoid(x, eps=1e-5):
@@ -57,6 +60,11 @@ class FUTR3DAttention(BaseModule):
             Default: None.
         init_cfg (obj:`mmcv.ConfigDict`): The Config for initialization.
             Default: None.
+        routing_mode (str): LiDAR-camera routing mode, one of none, hard
+            or soft. Default: none.
+        routing_hidden_dims (int): Hidden width of the router MLP. Default: 64.
+        routing_diagnostics (bool): Retain the latest routing snapshot.
+            Default: False.
     """
 
     def __init__(self,
@@ -75,7 +83,10 @@ class FUTR3DAttention(BaseModule):
                  rad_cuda=True,
                  batch_first=False,
                  norm_cfg=None,
-                 init_cfg=None):
+                 init_cfg=None,
+                 routing_mode='none',
+                 routing_hidden_dims=64,
+                 routing_diagnostics=False):
         super().__init__(init_cfg)
         if embed_dims % num_heads != 0:
             raise ValueError(f'embed_dims must be divisible by num_heads, '
@@ -155,6 +166,14 @@ class FUTR3DAttention(BaseModule):
                 nn.Linear(self.embed_dims, self.embed_dims),
                 nn.LayerNorm(self.embed_dims),
             )
+
+        self.query_router = None
+        if routing_mode != 'none':
+            if not (use_lidar and use_camera and not use_radar):
+                raise ValueError('Query routing requires LiDAR and camera only')
+            self.query_router = QueryRouter(
+                embed_dims, routing_mode, routing_hidden_dims,
+                routing_diagnostics)
 
         self.init_weights()
 
@@ -251,7 +270,7 @@ class FUTR3DAttention(BaseModule):
             value = value.permute(1, 0, 2)
 
         bs, num_query, _ = query.shape
-        if self.use_lidar:
+        if self.use_lidar and (self.query_router is None or pts_feats is not None):
             value = pts_feats
             bs, num_value, _ = value.shape
             
@@ -294,8 +313,10 @@ class FUTR3DAttention(BaseModule):
                     value, spatial_shapes, sampling_locations, attention_weights)
 
             pts_output = self.output_proj(output)
+        elif self.use_lidar:
+            pts_output = torch.zeros_like(query)
 
-        if self.use_camera:
+        if self.use_camera and (self.query_router is None or img_feats is not None):
             # (B, 1, num_query, num_cams, num_points, num_levels)
             img_attention_weights = self.img_attention_weights(query).view(
                 bs, 1, num_query, self.num_cams, 1, self.num_levels)
@@ -314,6 +335,8 @@ class FUTR3DAttention(BaseModule):
             img_output = img_output.permute(0, 2, 1)
 
             img_output = self.img_output_proj(img_output)
+        elif self.use_camera:
+            img_output = torch.zeros_like(query)
 
         if self.use_radar:
             value = rad_feats
@@ -364,6 +387,8 @@ class FUTR3DAttention(BaseModule):
             output = torch.cat((img_output, pts_output, radar_output), dim=2)
             output = self.modality_fusion_layer(output)
         elif self.use_lidar and self.use_camera:
+            if self.query_router is not None:
+                pts_output, img_output = self.query_router(pts_output, img_output)
             output = torch.cat((img_output, pts_output), dim=2)
             output = self.modality_fusion_layer(output)
         elif self.use_camera and self.use_radar:
